@@ -1,0 +1,38 @@
+<header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Website Logo and Title -->
+            <a class="navbar-brand" href="{{ '/' | relative_url }}">
+                <i class="fas fa-eye me-2"></i>{{ site.title }}
+            </a>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% for nav in site.navigation %}
+                    <li class="nav-item">
+                        {% if nav.external %}
+                        <!-- External Link (e.g., GitHub) -->
+                        <a class="nav-link" href="{{ nav.url }}" target="_blank" rel="noopener">
+                            {{ nav.title }} <i class="fas fa-external-link-alt ms-1"></i>
+                        </a>
+                        {% else %}
+                        <!-- Internal Link -->
+                        <a class="nav-link {% if page.url contains nav.url %}active{% endif %}"
+                            href="{{ nav.url | relative_url }}">
+                            {{ nav.title }}
+                        </a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>

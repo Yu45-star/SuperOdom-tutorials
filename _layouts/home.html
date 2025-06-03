@@ -1,0 +1,59 @@
+---
+layout: default
+---
+
+<!-- 🦸‍♀️ Hero area -->
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">{{ site.title }}</h1>
+        <p class="hero-description">{{ site.description }}</p>
+        <a href="{{ '/tutorials/' | relative_url }}" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</div>
+
+<!-- ✨ Feature Showcase -->
+<section class="features-section">
+    <div class="container">
+        <h2>Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-rocket"></i>
+                <h3>High Performance</h3>
+                <p>Optimized algorithms for real-time processing on various hardware platforms</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-cogs"></i>
+                <h3>Modular Design</h3>
+                <p>Flexible architecture allowing easy customization and extension</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-eye"></i>
+                <h3>Multiple Sensors</h3>
+                <p>Support for monocular, stereo, and RGB-D cameras</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 📚 Latest Tutorials Preview -->
+<section class="tutorials-preview">
+    <div class="container">
+        <h2>Latest Tutorials</h2>
+        <div class="tutorials-grid">
+            <!-- 🔄 Jekyll Loop: Display the latest 6 tutorials -->
+            {% for tutorial in site.tutorials limit:6 %}
+            <div class="tutorial-card">
+                <h3><a href="{{ tutorial.url | relative_url }}">{{ tutorial.title }}</a></h3>
+                <p>{{ tutorial.excerpt | strip_html | truncatewords: 20 }}</p>
+                <div class="tutorial-meta">
+                    <span class="difficulty {{ tutorial.difficulty }}">{{ tutorial.difficulty | capitalize }}</span>
+                    <span class="category">{{ tutorial.category | capitalize }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- 📝 Page-specific content -->
+{{ content }}

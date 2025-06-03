@@ -1,0 +1,97 @@
+# Basic information for the SuperOdom tutorial site
+title: SuperOdom Tutorial
+description: "Comprehensive Tutorial and Documentaton for SuperOdom"
+author: "SuperOdom Team"
+baseurl: "/SuperOdom-tutorials"
+
+# Build settings
+markdown: kramdown # Markdown processor
+highlighter: rouge # Syntax highlighter
+theme: minima      # Jekyll theme
+permalink: /:categories/:title/ # URL structure
+
+# Plugins
+plugins:
+  - jekyll-feed           # RSS subscription
+  - jekyll-seo-tag        # SEO tags  
+  - jekyll-sitemap        # Sitemap generation
+  - jekyll-paginate       # Pagination
+  - jekyll-gist           # Gist support
+  - jekyll-include-cache  # Caching for includes
+
+# Page settings
+paginate: 10                # Number of posts per page
+paginate_path: "/page/:num" # Pagination path
+
+# Syntax Highlighting
+kramdown:
+  syntax_highlighter: rouge  # Use Rouge for syntax highlighting
+  syntax_highlighter_opts:   
+    css_class: 'highlight'
+    line_numbers: true
+
+# Collection settings
+collections:
+  tutorials:              # Tutorials collection
+    output: true          # Generate pages for every tutorial
+    permalink: /:collection/:categories/:name/
+  examples:               # Examples collection
+    output: true
+    permalink: /:collection/:name/
+  api:                    # API collection
+    output: true
+    permalink: /:collection/:name/
+
+# default settings
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "SuperOdom Team"
+  - scope:
+      path: ""
+      type: "tutorials"
+    values:
+      layout: "tutorial"    # Tutorials use the tutorial layout
+  - scope:
+      path: ""
+      type: "examples"
+    values:
+      layout: "example"
+  - scope:
+      path: ""
+      type: "api"
+    values:
+      layout: "api"
+
+# Navigation menu configuration
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Tutorials"
+    url: "/tutorials/"
+  - title: "Examples"
+    url: "/examples/"
+  - title: "API Reference"
+    url: "/api/"
+  - title: "GitHub"
+    url: "https://github.com/superxslam/SuperOdom"
+    external: true
+
+# Social links
+social:
+  github: "superxslam/SuperOdom"
+
+# SEO(Search Engine Optimization) Settings
+seo:
+  name: "SuperOdom"
+  description: "Comprehensive Tutorial and Documentation for SuperOdom"
+  keywords: "SLAM, robotics, computer vision, tutorial"
+
+# Exclude files from the build
+exclude:
+  - Gemfile
+  - README.md
+  - .github/

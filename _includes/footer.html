@@ -1,0 +1,65 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <!-- Left: Website Information -->
+            <div class="col-md-6 mb-4">
+                <h5>{{ site.title }}</h5>
+                <p class="text-light">{{ site.description }}</p>
+                <p class="small text-muted">
+                    Learn visual odometry and SLAM with comprehensive tutorials,
+                    examples, and hands-on projects.
+                </p>
+            </div>
+
+            <!-- Right: Links and Social Media -->
+            <div class="col-md-6 mb-4 text-md-end">
+                <h5>Connect</h5>
+                <div class="social-links mb-3">
+                    {% if site.social.github %}
+                    <a href="https://github.com/{{ site.social.github }}" target="_blank" rel="noopener"
+                        class="text-light me-3">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    {% endif %}
+                    {% if site.social.email %}
+                    <a href="mailto:{{ site.social.email }}" class="text-light me-3">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    {% endif %}
+                    {% if site.social.twitter %}
+                    <a href="https://twitter.com/{{ site.social.twitter }}" target="_blank" rel="noopener"
+                        class="text-light me-3">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    {% endif %}
+                </div>
+
+                <!-- Quick Links -->
+                <div class="quick-links">
+                    <a href="{{ '/tutorials/' | relative_url }}" class="text-light me-3">Tutorials</a>
+                    <a href="{{ '/examples/' | relative_url }}" class="text-light me-3">Examples</a>
+                    <a href="{{ '/api/' | relative_url }}" class="text-light">API Docs</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Information -->
+        <hr class="my-4 border-light">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0 small text-muted">
+                    &copy; {{ 'now' | date: "%Y" }} {{ site.title }}.
+                    Licensed under <a href="https://opensource.org/licenses/MIT" target="_blank" class="text-light">MIT
+                        License</a>.
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="mb-0 small text-muted">
+                    Built with <i class="fas fa-heart text-danger"></i> using
+                    <a href="https://jekyllrb.com/" target="_blank" class="text-light">Jekyll</a> and
+                    <a href="https://pages.github.com/" target="_blank" class="text-light">GitHub Pages</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    </footer>

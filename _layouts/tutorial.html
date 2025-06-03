@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+<article class="tutorial">
+    <!-- 📋 Tutorial Header Info -->
+    <header class="tutorial-header">
+        <div class="tutorial-meta">
+            <span class="difficulty {{ page.difficulty }}">{{ page.difficulty | capitalize }}</span>
+            <span class="category">{{ page.category | capitalize }}</span>
+            {% if page.duration %}
+            <span class="duration">{{ page.duration }}</span>
+            {% endif %}
+        </div>
+        <h1 class="tutorial-title">{{ page.title }}</h1>
+        {% if page.description %}
+        <p class="tutorial-description">{{ page.description }}</p>
+        {% endif %}
+    </header>
+
+    <!-- 🗂️ Table of Contents Navigation -->
+    <div class="tutorial-nav">
+        <div class="tutorial-toc">
+            <h3>Contents</h3>
+            <div id="toc"></div> <!-- JavaScript will generate the table of contents here -->
+        </div>
+    </div>
+
+    <!-- 📖 Tutorial Content -->
+    <div class="tutorial-content">
+        {{ content }}
+    </div>
+
+    <!-- 🧭 Tutorial Navigation -->
+    <footer class="tutorial-footer">
+        <div class="tutorial-navigation">
+            <!-- 🔍 Jekyll Logic: Find the current tutorial's position within the same category -->
+            {% assign tutorials = site.tutorials | where: "category", page.category | sort: "order" %}
+            {% for tutorial in tutorials %}
+            {% if tutorial.url == page.url %}
+            {% assign current_index = forloop.index %}
+            {% break %}
+            {% endif %}
+            {% endfor % }
+
+            <!-- ⬅️ Previous Tutorial -->
+            {% if current_index > 1 %}
+            {% assign prev_tutorial = tutorials[current_index | minus: 2] %}
+            <a href="{{ prev_tutorial.url | relative_url }}" class="btn btn-outline-primary">
+                <i class="fas fa-chevron-left"></i> {{ prev_tutorial.title }}
+            </a>
+            {% endif %}
+
+            <!-- ➡️ Next Tutorial -->
+            {% if current_index < tutorials.size %} {% assign next_tutorial=tutorials[current_index] %} <a
+                href="{{ next_tutorial.url | relative_url }}" class="btn btn-primary">
+                {{ next_tutorial.title }} <i class="fas fa-chevron-right"></i>
+                </a>
+                {% endif %}
+        </div>
+
+        <!-- 💬 Feedback Section -->
+        <div class="tutorial-feedback">
+            <h4>Was this tutorial helpful?</h4>
+            <a href="https://github.com/{{ site.social.github }}/issues/new?title=Feedback%20for%20{{ page.title | url_encode }}"
+                class="btn btn-outline-secondary">
+                <i class="fab fa-github"></i> Provide Feedback
+            </a>
+        </div>
+    </footer>
+</article>
