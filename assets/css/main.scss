@@ -67,11 +67,19 @@ a {
         background: transparent;
         padding: 1rem 0;
 
+        .container {
+            display: flex;
+            align-items: center;            // Center items vertically
+            justify-content: space-between; // Align items to the edges
+            flex-wrap: nowrap;              // Prevent wrapping
+        }
+
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
             color: white !important;
             text-decoration: none;
+            flex-shrink: 0; // Prevent shrinking
 
             i {
                 margin-right: 0.5rem;
@@ -83,18 +91,29 @@ a {
             }
         }
 
+        .navbar-collapse{
+            flex-grow: 0; // Prevent growing
+        }
+
         .navbar-nav {
             display: flex;
-            gap: 1rem;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap; // Prevent wrapping
+
+            .nav-item {
+                flex-shrink: 0; // Prevent shrinking
+            }
             
             .nav-link {
                 color: rgba(255, 255, 255, 0.9) !important;
                 font-weight: 500;
-                margin: 0 0.75rem;
-                padding: 0.5rem 1rem !important;
+                margin: 0 0.3rem;
+                padding: 0.5rem 0.8rem !important;
                 border-radius: 25px;
                 transition: all 0.3s ease;
                 position: relative;
+                white-space: nowrap; // Prevent wrapping
 
                 &:hover {
                     color: white !important;
@@ -123,8 +142,16 @@ a {
                 color: white;
                 border-radius: 20px;
                 padding: 0.5rem 1rem;
-                width: 200px;
+                width: 160px;
                 transition: all 0.3s ease;
+
+                @media (max-width: 992px) {
+                    width: 120px;
+                }
+
+                @media (max-width: 768px) {
+                    width: 100px;
+                }
 
                 &::placeholder {
                     color: rgba(255, 255, 255, 0.7);
@@ -179,6 +206,7 @@ a {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
+            flex-shrink: 0; // Prevent shrinking
 
             &:hover {
                 background: rgba(255, 255, 255, 0.2);
@@ -190,6 +218,7 @@ a {
         .navbar-toggler {
             border: none;
             color: white;
+            order: 3;
 
             .navbar-toggler-icon {
                 background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -598,6 +627,28 @@ a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+@media (max-width: 1200px) {
+    .navbar {
+        .nav-link {
+            padding: 0.5rem 0.6rem !important;  
+            margin: 0 0.2rem; 
+            font-size: 0.9rem; 
+        }
+
+        .search-container #search-input {
+            width: 140px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        .nav-link {
+            font-size: 0.85rem; 
+        }
+    }
 }
 
 // 🌙 Dark Theme Styles - Complete Version
