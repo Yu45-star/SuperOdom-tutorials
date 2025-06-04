@@ -2,14 +2,28 @@
 layout: default
 ---
 
-<!-- 🦸‍♀️ Hero area -->
-<div class="hero-section">
+<!-- Hero Section -->
+<section class="hero-section">
     <div class="hero-content">
-        <h1 class="hero-title">{{ site.title }}</h1>
-        <p class="hero-description">{{ site.description }}</p>
-        <a href="{{ '/tutorials/' | relative_url }}" class="btn btn-primary btn-lg">Get Started</a>
+        <h1 class="hero-title">SuperOdom</h1>
+        <p class="hero-description">
+            Accelerate SLAM research via high-performance visual-inertial odometry with learning.
+        </p>
+        <div class="hero-buttons">
+            <a href="#getting-started" class="btn btn-hero">Get Started</a>
+            <a href="/tutorials/" class="btn btn-hero-outline">View Tutorials</a>
+        </div>
     </div>
-</div>
+
+    <!-- Optional: Add video or image -->
+    <div class="hero-media">
+        <div class="demo-placeholder">
+            <!-- Here places video or image -->
+            <i class="fas fa-play-circle"></i>
+            <span>Watch Demo</span>
+        </div>
+    </div>
+</section>
 
 <!-- ✨ Feature Showcase -->
 <section class="features-section">
