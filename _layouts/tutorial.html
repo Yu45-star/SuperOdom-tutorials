@@ -2,70 +2,67 @@
 layout: default
 ---
 
-<article class="tutorial">
-    <!-- 📋 Tutorial Header Info -->
-    <header class="tutorial-header">
-        <div class="tutorial-meta">
-            <span class="difficulty {{ page.difficulty }}">{{ page.difficulty | capitalize }}</span>
-            <span class="category">{{ page.category | capitalize }}</span>
-            {% if page.duration %}
-            <span class="duration">{{ page.duration }}</span>
+<div class="tutorial-container">
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+            <li><a href="{{ site.baseurl }}/">Home</a></li>
+            <li><a href="{{ site.baseurl }}/tutorials/">Tutorials</a></li>
+            {% if page.parent %}
+            <li><a href="{{ site.baseurl }}/tutorials/getting-started/">{{ page.parent }}</a></li>
             {% endif %}
-        </div>
-        <h1 class="tutorial-title">{{ page.title }}</h1>
-        {% if page.description %}
-        <p class="tutorial-description">{{ page.description }}</p>
-        {% endif %}
-    </header>
+            <li aria-current="page">{{ page.title }}</li>
+        </ol>
+    </nav>
 
-    <!-- 🗂️ Table of Contents Navigation -->
-    <div class="tutorial-nav">
-        <div class="tutorial-toc">
-            <h3>Contents</h3>
-            <div id="toc"></div> <!-- JavaScript will generate the table of contents here -->
-        </div>
-    </div>
-
-    <!-- 📖 Tutorial Content -->
     <div class="tutorial-content">
-        {{ content }}
-    </div>
+        <!-- Sidebar Navigation -->
+        <aside class="tutorial-sidebar">
+            <nav class="tutorial-nav">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><a href="{{ site.baseurl }}/tutorials/getting-started/introduction/" {% if page.url
+                            contains 'introduction' %}class="active" {% endif %}>
+                            Introduction</a></li>
+                    <li><a href="{{ site.baseurl }}/tutorials/getting-started/installation/" {% if page.url
+                            contains 'installation' %}class="active" {% endif %}>
+                            Installation</a></li>
+                    <li><a href="{{ site.baseurl }}/tutorials/getting-started/quick-start/" {% if page.url
+                            contains 'quick-start' %}class="active" {% endif %}>
+                            Quick Start</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-    <!-- 🧭 Tutorial Navigation -->
-    <footer class="tutorial-footer">
-        <div class="tutorial-navigation">
-            <!-- 🔍 Jekyll Logic: Find the current tutorial's position within the same category -->
-            {% assign tutorials = site.tutorials | where: "category", page.category | sort: "order" %}
-            {% for tutorial in tutorials %}
-            {% if tutorial.url == page.url %}
-            {% assign current_index = forloop.index %}
-            {% break %}
-            {% endif %}
-            {% endfor % }
-
-            <!-- ⬅️ Previous Tutorial -->
-            {% if current_index > 1 %}
-            {% assign prev_tutorial = tutorials[current_index | minus: 2] %}
-            <a href="{{ prev_tutorial.url | relative_url }}" class="btn btn-outline-primary">
-                <i class="fas fa-chevron-left"></i> {{ prev_tutorial.title }}
-            </a>
-            {% endif %}
-
-            <!-- ➡️ Next Tutorial -->
-            {% if current_index < tutorials.size %} {% assign next_tutorial=tutorials[current_index] %} <a
-                href="{{ next_tutorial.url | relative_url }}" class="btn btn-primary">
-                {{ next_tutorial.title }} <i class="fas fa-chevron-right"></i>
-                </a>
+        <!-- Main Content -->
+        <main class="tutorial-main">
+            <header class="tutorial-header">
+                <h1>{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="tutorial-description">{{ page.description }}</p>
                 {% endif %}
-        </div>
+            </header>
 
-        <!-- 💬 Feedback Section -->
-        <div class="tutorial-feedback">
-            <h4>Was this tutorial helpful?</h4>
-            <a href="https://github.com/{{ site.social.github }}/issues/new?title=Feedback%20for%20{{ page.title | url_encode }}"
-                class="btn btn-outline-secondary">
-                <i class="fab fa-github"></i> Provide Feedback
-            </a>
-        </div>
-    </footer>
-</article>
+            <div class="tutorial-body">
+                {{ content }}
+            </div>
+
+            <!-- Tutorial Navigation -->
+            <footer class="tutorial-footer">
+                <nav class="tutorial-pagination">
+                    {% if page.prev_tutorial %}
+                    <a href="{{ site.baseurl }}{{ page.prev_tutorial.url }}" class="prev-tutorial">
+                        ← {{ page.prev_tutorial.title }}
+                    </a>
+                    {% endif %}
+            
+                    {% if page.next_tutorial %}
+                    <a href="{{ site.baseurl }}{{ page.next_tutorial.url }}" class="next-tutorial">
+                        {{ page.next_tutorial.title }} →
+                    </a>
+                    {% endif %}
+                </nav>     
+            </footer>
+        </main>
+    </div>
+</div>

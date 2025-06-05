@@ -1,0 +1,27 @@
+main:
+  - title: "Home"
+    url: /
+  - title: "Tutorials"
+    url: /tutorials/
+    children:
+      - title: "Getting Started"
+        url: /tutorials/getting-started/
+        children:
+          - title: "Introduction"
+            url: /tutorials/getting-started/introduction/
+          - title: "Installation"
+            url: /tutorials/getting-started/installation/
+          - title: "Quick Start"
+            url: /tutorials/getting-started/quick-start/
+  - title: "GitHub"
+    url: "https://github.com/superxslam/SuperOdom"
+    external: true
+
+sidebar:
+  getting-started:
+    - title: "Introduction to SuperOdom"
+      url: /tutorials/getting-started/introduction/
+    - title: "Installation Guide"
+      url: /tutorials/getting-started/installation/
+    - title: "Quick Start"
+      url: /tutorials/getting-started/quick-start/

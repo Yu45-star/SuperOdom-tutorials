@@ -28,7 +28,8 @@ kramdown:
   syntax_highlighter: rouge  # Use Rouge for syntax highlighting
   syntax_highlighter_opts:   
     css_class: 'highlight'
-    line_numbers: true
+    block:
+      line_numbers: false
 
 # Collection settings
 collections:
@@ -51,8 +52,8 @@ defaults:
       layout: "post"
       author: "SuperOdom Team"
   - scope:
-      path: ""
-      type: "tutorials"
+      path: "tutorials"
+      type: "pages"
     values:
       layout: "tutorial"    # Tutorials use the tutorial layout
   - scope:
